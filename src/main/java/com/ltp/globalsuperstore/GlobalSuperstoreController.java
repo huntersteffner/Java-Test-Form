@@ -11,4 +11,9 @@ public class GlobalSuperstoreController {
         model.addAttribute("categories", Constants.CATEGORIES);
         return "form";
     }
+
+    @GetMapping("/inventory")
+    public String getInventory() {
+        return "inventory";
+    }
 }
