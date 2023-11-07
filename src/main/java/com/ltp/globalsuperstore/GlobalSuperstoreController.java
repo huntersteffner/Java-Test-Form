@@ -35,6 +35,9 @@ public class GlobalSuperstoreController {
 
     @PostMapping("/submitItem")
     public String handleSubmit(@Valid Item item, BindingResult result, RedirectAttributes redirectAttributes) {
+        if(item.getPrice() < item.getDiscount()) {
+            result.rejectValue("price", "Error", "Price cannot be less than discount");
+        }
         if(result.hasErrors()) return "form";
         int index = getIndexFromId(item.getId());
         String status = Constants.SUCCESS_STATUS;
